@@ -9,11 +9,35 @@
 		<script src="index.js"></script>
 	</head>
 	<body>
-		<div>
-			Check the console output ;)
-		</div>
-		<div id="Content">
+		<div id="Wrapper">
+			<div id="UserInput">
+				<!-- Query Input -->
+				<div>
+					<label for="Query">Query</label>
+					<input type="text" name="Query" />
+				</div>
+				<!-- Sort By Input -->
+				<div>
+					<select name="SortBy">
+						<option value="popularity">Popular</option>
+						<option value="relevancy">Relevant</option>
+						<!-- There should be more here, read the API documentation -->
+					</select>
+				</div>
+				<!-- Theres tons more, look at the API documentation -->
+				<div>
+				<button onclick="submitAPIRequest()">Submit</button>
+				</div>
+			</div>
+			<div id="Content">
 
+			</div>
+			<!-- I promised to attribute newsapi.org when I signed up for a key -->
+			<!--
+			<div id="NewsAPIAttribution">
+				<a href="https://newsapi.org/">NewsAPI.org</a>
+			</div>
+			-->
 		</div>
 	</body>
 </html>
