@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CPEG 457 Project</title>
+		<script>
+			var url = 'https://newsapi.org/v2/everything?' +
+					'q=Apple&' +
+					'from=2018-04-09&' +
+					'sortBy=popularity&' +
+					'apiKey=1473d5d8b9b54099940acc059d5cb4be';
+
+				var req = new Request(url);
+
+				fetch(req)
+					.then(function (response) {
+						console.log(response.json());
+					})
+		</script>
+	</head>
+	<body>
+		<div id="Main">
+
+		</div>
+	</body>
+</html>
