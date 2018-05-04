@@ -25,6 +25,6 @@ class PipeFile():
 
 # Sample Usage:
 #
-# HtmlFile.write("Dank\n")
-# HtmlFile.append("Memes")
+# PipeFile.write("Dank\n")
+# PipeFile.append("Memes")
 #
