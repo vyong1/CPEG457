@@ -1,4 +1,8 @@
-class HtmlFile():
+class PipeFile():
+    '''
+    A layer of abstraction between python
+    and the 'pipe' file
+    '''
     Name = 'pipe'
     
     def write(htmlText):
