@@ -1,2 +1,3 @@
-def helloWorld():
-    return "Hello World"
+import PipeFile
+
+PipeFile.write("Hi")

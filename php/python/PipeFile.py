@@ -6,21 +6,21 @@ class PipeFile():
     Name = 'pipe'
     
     def write(htmlText):
-        f = open(HtmlFile.Name, "w")
+        f = open(PipeFile.Name, "w")
         f.write(htmlText)
         f.close()
     
     def append(htmlText):
-        f = open(HtmlFile.Name, "a")
+        f = open(PipeFile.Name, "a")
         f.write(htmlText)
         f.close()
     
     def clear():
-        f = open(HtmlFile.Name, "w")
+        f = open(PipeFile.Name, "w")
         f.close()
 
     def read():
-        f = open(HtmlFile.Name, "r")
+        f = open(PipeFile.Name, "r")
         return f.read()
 
 # Sample Usage:
@@ -28,3 +28,4 @@ class PipeFile():
 # PipeFile.write("Dank\n")
 # PipeFile.append("Memes")
 #
+PipeFile.write("Hi")

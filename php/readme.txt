@@ -1,6 +1,6 @@
 How to start the server
 1.) php -S localhost:8008
-2.) go to http://localhost:8008 in a web browser
+2.) go to localhost:8008 in a web browser
 
 Notes:
 - Make sure php is in your path

@@ -5,8 +5,8 @@
     <body>
         <?php
             // Read the pipe file
-            $pipefile = fopen("python/pipe", "r") or die("Unable to open pipe");
-            echo fread($pipefile, filesize("python/pipe"));
+            $pipefile = fopen("pipe", "r") or die("Unable to open pipe");
+            echo fread($pipefile, filesize("pipe"));
             fclose($pipefile)
         ?>
         
