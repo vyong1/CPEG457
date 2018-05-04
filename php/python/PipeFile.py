@@ -28,4 +28,3 @@ class PipeFile():
 # PipeFile.write("Dank\n")
 # PipeFile.append("Memes")
 #
-PipeFile.write("Hi")

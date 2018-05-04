@@ -3,18 +3,10 @@
     <head>
     </head>
     <body>
-        <?php
-            // Read the pipe file
-            $pipefile = fopen("pipe", "r") or die("Unable to open pipe");
-            echo fread($pipefile, filesize("pipe"));
-            fclose($pipefile)
-        ?>
-        
-        <!-- Temporary -->
-        <hr>
         <form action="FormSubmit.php" method="post">
+            <label for="Name">Enter a name:</label>
+            <input type="text" name="name">
             <input type="submit">
         </form>
-
     </body>
 </html>
