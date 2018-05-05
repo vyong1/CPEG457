@@ -20,11 +20,6 @@ def parsePOSTFromPipe():
 
     return POST
 
-def buildLink(url):
-    s = '<a href="' + url + '">' + url + "</a>"
-    return s
-    
-
 POST = parsePOSTFromPipe()
 PipeFile.clear()
 for k,v in POST.items():

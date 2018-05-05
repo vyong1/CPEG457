@@ -1,17 +1,17 @@
-from py_html import HtmlElement as he
+from py_html.HtmlElement import HtmlElement
 
-a1 = he.HtmlElement(
+a1 = HtmlElement(
     tag='a', 
     content='this is a link', 
     attrs={'href' : 'https://stackoverflow.com/questions/8930915/append-dictionary-to-a-dictionary'}
 )
-a2 = he.HtmlElement(
+a2 = HtmlElement(
     tag='a', 
     content='this is also a link', 
     attrs={'href' : 'https://stackoverflow.com/questions/43462624/use-function-without-calling-module'}
 )
 
-div1 = he.HtmlElement(
+div1 = HtmlElement(
     tag='div',
     content=a1,
     attrs={}
