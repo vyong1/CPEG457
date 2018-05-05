@@ -1,7 +1,17 @@
 import aylien_news_api
 import urllib
+import nltk
 from aylien_news_api.rest import ApiException
 from bs4 import BeautifulSoup
+from nltk.tag import StanfordNERTagger
+from nltk.tokenize import word_tokenize
+import os
+java_path = "C:/Program Files/Java/jdk-10.0.1/bin/java.exe"
+os.environ['JAVAHOME'] = java_path
+
+# Only need to run this once
+# nltk.download('punkt')
+
 
 # Configure API key authorization: app_id
 aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'c45042a9'
@@ -15,6 +25,16 @@ url = "https://www.cnn.com/2018/04/24/politics/melania-trump-white-house/index.h
 html = urllib.request.urlopen(url)
 soup = BeautifulSoup(html, 'html.parser')
 raw_text = soup.get_text()
+
+# This needs to be changed to match your NER directory
+st = StanfordNERTagger('C:/Users/Francis/Documents/Search and Data Mining/CPEG457/Aylien-api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
+                         'C:/Users/Francis/Documents/Search and Data Mining/CPEG457/Aylien-api/NER/stanford-ner.jar',
+                         encoding='utf-8')
+
+tokenized_text = word_tokenize(raw_text)
+classified_text = st.tag(tokenized_text)
+
+print(classified_text)
 
 def getStories(author_name):
     # Takes in authors name, sets it as an option for the api
