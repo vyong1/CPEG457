@@ -1,13 +1,31 @@
 from PipeFile import PipeFile
 import sys
 
+def parsePOSTFromPipe():
+    '''
+    Parses PHP Pipelined POST data into a python dict
+    '''
+    POST = {}
+    # Parse the post string into a dict
+    raw = PipeFile.read()
+    raw = raw.strip()
+    raw = raw.split('\n')
 
-# Future implementation:
-#
-# Send in a dict of all input names
-# HtmlBuilder will parse the input names from sys.argv[i]
-#
+    # Process each kvp
+    for kvp in raw:
+        i = kvp.find(':')
+        key = kvp[0:i]
+        val = kvp[i + 1:]
+        POST[key] = val
 
-s = "<h1>The name you sent was: " + sys.argv[1] + "<br>" + "</h1>This variable is accessible through the python backend (albeit in a very rough implementation).<br>" + "This implementation is held together only by elmers glue and bits of tape, but at least it works.<br>"
+    return POST
 
-PipeFile.write(s)
+def buildLink(url):
+    s = '<a href="' + url + '">' + url + "</a>"
+    return s
+    
+
+POST = parsePOSTFromPipe()
+PipeFile.clear()
+for k,v in POST.items():
+    PipeFile.append(k + " : " + v + "<br>")
