@@ -1,5 +1,5 @@
 from PipeFile import PipeFile
-import POSTParser
+import py_html.POSTParser
 import sys
 
 # Parse the POST and extract the URL
