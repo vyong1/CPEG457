@@ -3,6 +3,6 @@ How to start the server
 2.) go to localhost:8008 in a web browser
 
 Notes:
-- Run the first command from the context of the /php/ foder
+- Run the first command from the context of the /WebApp/ foder
 - Make sure php is in your path
 - No, you cannot make a batch script for this
