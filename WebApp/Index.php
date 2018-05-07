@@ -10,13 +10,13 @@
         <div class="content">
             <div class="container">
                 <div class="row margin10">
-                    <a href="EmbeddedTwitter.php" class="btn btn-info" role="button">Embedded Twitter</a>
+                    <a href="EmbeddedTwitter.php" class="btn" role="button">Embedded Twitter</a>
                 </div>
                 <div class="row margin10">
-                    <a href="Form.php" class="btn btn-info" role="button">Form Submission Example</a>
+                    <a href="Form.php" class="btn" role="button">Form Submission Example</a>
                 </div>
                 <div class="row margin10">
-                    <a href="URLForm.php" class="btn btn-info" role="button">URL Form Submission</a>
+                    <a href="URLForm.php" class="btn btn-success" role="button">URL Form Submission</a>
                 </div>
             </div>
         </div>

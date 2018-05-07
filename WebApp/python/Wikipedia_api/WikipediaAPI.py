@@ -27,7 +27,3 @@ class WikipediaAPI:
 
 def hasPulitzer(stringData):
     return (str.find(stringData, 'Pulitzer') >= 0)
-
-
-r = WikipediaAPI.queryLatest('John Archibald')
-print(hasPulitzer(str(r.json()))) 
