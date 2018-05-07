@@ -25,7 +25,7 @@
             fclose($pipefile);
             
             // Call appropriate python script to build up the file to the pipe
-            exec('py python/HtmlBuilder.py');
+            exec('py python/URLInputHandler.py');
 
             // Read the pipe file
             $pipefile = fopen("pipe", "r") or die("Unable to open pipe");

@@ -8,17 +8,16 @@
     </head>
     <body>
         <div class="content">
-            <div class="container">
-                <div class="row margin10">
-                    <a href="EmbeddedTwitter.php" class="btn btn-info" role="button">Embedded Twitter</a>
+            <form action="URLFormSubmit.php" method="post">
+                 <div class="form-group">
+                    <label for="url_input">Article URL</label>
+                    <input type="text" class="form-control" id="url_input" name="url_input" placeholder="Enter the Article URL">
                 </div>
-                <div class="row margin10">
-                    <a href="Form.php" class="btn btn-info" role="button">Form Submission Example</a>
+
+                <div>
+                    <input type="submit">
                 </div>
-                <div class="row margin10">
-                    <a href="URLForm.php" class="btn btn-info" role="button">URL Form Submission</a>
-                </div>
-            </div>
+            </form>
         </div>
     </body>
 </html>

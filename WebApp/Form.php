@@ -8,17 +8,22 @@
     </head>
     <body>
         <div class="content">
-            <div class="container">
-                <div class="row margin10">
-                    <a href="EmbeddedTwitter.php" class="btn btn-info" role="button">Embedded Twitter</a>
+            <a href="Index.php" class="btn btn-info" role="button">Index</a>
+            <form action="FormSubmit.php" method="post">
+                <div class="form-group">
+                    <label for="name_input">Name</label>
+                    <input type="text" class="form-control" id="name_input" name="name" placeholder="Your Name">
                 </div>
-                <div class="row margin10">
-                    <a href="Form.php" class="btn btn-info" role="button">Form Submission Example</a>
+
+                 <div class="form-group">
+                    <label for="occupation_input">Occupation</label>
+                    <input type="text" class="form-control" id="occupation_input" name="occupation" placeholder="Your Name">
                 </div>
-                <div class="row margin10">
-                    <a href="URLForm.php" class="btn btn-info" role="button">URL Form Submission</a>
+
+                <div>
+                    <input type="submit">
                 </div>
-            </div>
+            </form>
         </div>
     </body>
 </html>
