@@ -1,9 +1,9 @@
 from py_html.HtmlElement import HtmlElement
 
-def buildCard(title, text, link_url, link_text):
+def buildCardWithLink(title, text, link_url, link_text):
     outerWrapper = HtmlElement(
         tag='div', 
-        attrs={'class' : 'card'}
+        attrs={'class' : '"card margin10"'}
     )
     cardBody = HtmlElement(
         tag='div',
@@ -34,7 +34,7 @@ def buildCard(title, text, link_url, link_text):
 def buildCard(title, text):
     outerWrapper = HtmlElement(
         tag='div', 
-        attrs={'class' : 'card'}
+        attrs={'class' : '"card margin10"'}
     )
     cardBody = HtmlElement(
         tag='div',
