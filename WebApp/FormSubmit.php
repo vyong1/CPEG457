@@ -9,7 +9,7 @@
     <body>
         <div class="content">
             <div>
-                <a href="Index.php" class="btn btn-info" role="button">Index</a>
+                <a href="index.php" class="btn btn-info" role="button">Index</a>
             </div>
             <?php
             // Clear the pipe
