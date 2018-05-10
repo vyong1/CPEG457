@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 import os
-java_path = "C:/ProgramData/Oracle/Java/javapath/java.exe"
+java_path = "C:/Program Files/Java/jdk-10.0.1/bin/java.exe"
 os.environ['JAVAHOME'] = java_path
-
+default_count = 5
 # Only need to run this once
 # nltk.download('punkt')
 
@@ -22,8 +22,8 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 api_instance = aylien_news_api.DefaultApi()
 
 # This needs to be changed to match your NER directory
-st = StanfordNERTagger('python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
-                         'python/Aylien_api/NER/stanford-ner.jar',
+st = StanfordNERTagger('C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
+                         'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
                          encoding='utf-8')
 
 ################################################
@@ -32,10 +32,11 @@ st = StanfordNERTagger('python/Aylien_api/NER/classifiers/english.all.3class.dis
 
 ################################################
 
-def getStories(author_name):
+def getStories(author_name, count=10):
     # Takes in authors name, sets it as an option for the api
     opts = {
-      'author_name': author_name
+      'author_name': author_name,
+      'per_page': count
     }
 
     try:
@@ -71,19 +72,28 @@ def createPossibleAuthor(tags):
             author_list.append(tags[x][0])
         x += 1
     return author_list
-            
-
+           
+def showMore():
+    global default_count
+    default_count += 10
+    return
 # !!! DANGER !!!
 # This code will always run if getStories.py is imported
 
-# input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
-#
-# tagged_text = createTags(createRawText(input_url))
-# possible_authors = createPossibleAuthor(tagged_text)
-# print(possible_authors)
-#
-# author = "Nina Mohan"
-# api_response = getStories(author)
-# for element in api_response.stories:
-#         print(element.title)
-#         print(element.links.permalink)
+input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
+
+#tagged_text = createTags(createRawText(input_url))
+#possible_authors = createPossibleAuthor(tagged_text)
+#print(possible_authors)
+author = "Nina Mohan"
+
+api_response = getStories(author, default_count)
+for element in api_response.stories:
+        print(element.title)
+        print(element.links.permalink)
+
+showMore()
+api_response = getStories(author, default_count)
+for element in api_response.stories:
+        print(element.title)
+        print(element.links.permalink)
