@@ -1,0 +1,5 @@
+'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457-master/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
+                         'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457-master/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
+                         encoding='utf-8'
+
+C:/Program Files/Java/jdk-10.0.1/bin/java.exe
