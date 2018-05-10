@@ -80,7 +80,7 @@ def showMore():
 # !!! DANGER !!!
 # This code will always run if getStories.py is imported
 
-input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
+# input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
 
 #tagged_text = createTags(createRawText(input_url))
 #possible_authors = createPossibleAuthor(tagged_text)

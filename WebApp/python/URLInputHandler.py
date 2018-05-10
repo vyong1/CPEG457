@@ -1,7 +1,7 @@
 from PipeFile import PipeFile
 import POSTParser
 from Wikipedia_api.WikipediaAPI import *
-import HtmlBuilder
+import CardBuilder
 import sys
 
 # Parse the POST and extract the URL
@@ -26,7 +26,8 @@ if(hasPulitzer(str(r.json())) is False):
 
 # Output some helpful html
 PipeFile.clear()
-PipeFile.append(HtmlBuilder.buildCard('Article URL', url))
-PipeFile.append(HtmlBuilder.buildCard('Author', name))
-PipeFile.append(HtmlBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
-PipeFile.append(HtmlBuilder.buildCardWithLink('Article', 'Some Article Text Some Article Text Some Article Text Some Article Text ', 'haha', 'This a Link'))
+PipeFile.append("<h1 class='margin10'>Here's What We Found:</h1>")
+PipeFile.append(CardBuilder.buildCard('Article URL', url))
+PipeFile.append(CardBuilder.buildCard('Author', name))
+PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
+PipeFile.append(CardBuilder.buildCardWithLink('Article', 'Some Article Text Some Article Text Some Article Text Some Article Text ', 'haha', 'This a Link'))
