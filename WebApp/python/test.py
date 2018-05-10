@@ -1,24 +1,27 @@
-from py_html.HtmlElement import HtmlElement
-import aylien_news_api
+# python lib imports
 import urllib
-import nltk
+import os
+# local imports
+from HtmlElement import HtmlElement
+# aylien news api imports
+import aylien_news_api
 from aylien_news_api.rest import ApiException
-from bs4 import BeautifulSoup
+# nltk imports
+import nltk
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
-import os
-import Aylien_api.getStories
+# beatiful soup import
+from bs4 import BeautifulSoup
+
+
+# Establish the path to java
 java_path = "C:/ProgramData/Oracle/Java/javapath/java.exe"
 os.environ['JAVAHOME'] = java_path
 
-# Only need to run this once
-# nltk.download('punkt')
-
-
 # Configure API key authorization: app_id
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'c45042a9'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '59793aeb'
 # Configure API key authorization: app_key
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = 'a9270fe1446fc3fb7c8e8196ed52e626'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '6557890cdc6ffabe3203700616bcb1fb'
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
@@ -36,7 +39,7 @@ print(possible_authors)
 
 html = urllib.request.urlopen(input_url)
 soup = BeautifulSoup(html, 'html.parser')
-print(soup.h1)
+# print(soup.h1)
 
 author_dict = {}
 
@@ -47,4 +50,4 @@ for author in possible_authors:
         author_dict[author] = 1
 
 for author in author_dict:
-    print(author + ':' + str(author_dict[author]))
+#    print(author + ':' + str(author_dict[author]))
