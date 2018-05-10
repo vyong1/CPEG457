@@ -1,4 +1,4 @@
-from py_html.HtmlElement import HtmlElement
+from HtmlElement import HtmlElement
 
 def buildCardWithLink(title, text, link_url, link_text):
     outerWrapper = HtmlElement(

@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="content">
-            <a href="Index.php" class="btn btn-info" role="button">Index</a>
+            <a href="index.php" class="btn btn-info" role="button">Index</a>
             <form action="FormSubmit.php" method="post">
                 <div class="form-group">
                     <label for="name_input">Name</label>
