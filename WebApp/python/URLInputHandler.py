@@ -1,7 +1,7 @@
 from PipeFile import PipeFile
 import POSTParser
 from Wikipedia_api.WikipediaAPI import *
-import HtmlBuilder
+import CardBuilder
 import sys
 
 # Parse the POST and extract the URL
