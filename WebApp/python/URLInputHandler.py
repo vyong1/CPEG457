@@ -26,6 +26,7 @@ if(hasPulitzer(str(r.json())) is False):
 
 # Output some helpful html
 PipeFile.clear()
+PipeFile.append("<h1 class='margin10'>Here's What We Found:</h1>")
 PipeFile.append(CardBuilder.buildCard('Article URL', url))
 PipeFile.append(CardBuilder.buildCard('Author', name))
 PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))

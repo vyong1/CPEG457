@@ -10,7 +10,7 @@
     <body>
         <div class="content">
             <div>
-                <a href="index.php" class="btn btn-info" role="button">Index</a>
+                <a href="index.php" class="btn btn-light emoji-button" role="button">🤥</a>
             </div>
             <?php
             // Clear the pipe
