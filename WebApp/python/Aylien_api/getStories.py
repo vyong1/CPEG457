@@ -8,7 +8,7 @@ from nltk.tokenize import word_tokenize
 import os
 java_path = "C:/Program Files/Java/jdk-10.0.1/bin/java.exe"
 os.environ['JAVAHOME'] = java_path
-default_count = 5
+default_count = 10
 # Only need to run this once
 # nltk.download('punkt')
 
@@ -85,15 +85,15 @@ input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-fre
 #tagged_text = createTags(createRawText(input_url))
 #possible_authors = createPossibleAuthor(tagged_text)
 #print(possible_authors)
-author = "Nina Mohan"
+# author = "Nina Mohan"
 
-api_response = getStories(author, default_count)
-for element in api_response.stories:
-        print(element.title)
-        print(element.links.permalink)
+# api_response = getStories(author, default_count)
+# for element in api_response.stories:
+#         print(element.title)
+#         print(element.links.permalink)
 
-showMore()
-api_response = getStories(author, default_count)
-for element in api_response.stories:
-        print(element.title)
-        print(element.links.permalink)
+# showMore()
+# api_response = getStories(author, default_count)
+# for element in api_response.stories:
+#         print(element.title)
+#         print(element.links.permalink)
