@@ -1,10 +1,12 @@
 # python lib imports
 import urllib
 import os
+import json
 # local imports
 from HtmlElement import HtmlElement
 from Wikipedia_api.WikipediaAPI import *
 from PipeFile import PipeFile
+import CardBuilder
 # aylien news api imports
 import aylien_news_api
 from aylien_news_api.rest import ApiException
@@ -58,7 +60,6 @@ def authorDict():
         print(author + ':' + str(author_dict[author]))
     
 def wikiApiTest():
-    r = WikipediaAPI.queryLatest("Will Smith").json()
-    print(r)
+    print(CardBuilder.buildWikipediaCard('Will Smith'))
 
 wikiApiTest()

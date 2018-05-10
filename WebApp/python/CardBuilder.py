@@ -1,4 +1,22 @@
+# python lib imports
+import urllib
+import os
+import json
+# local imports
 from HtmlElement import HtmlElement
+from Wikipedia_api.WikipediaAPI import *
+from PipeFile import PipeFile
+import CardBuilder
+# aylien news api imports
+import aylien_news_api
+from aylien_news_api.rest import ApiException
+# nltk imports
+import nltk
+from nltk.tag import StanfordNERTagger
+from nltk.tokenize import word_tokenize
+# beatiful soup import
+from bs4 import BeautifulSoup
+
 
 def buildCardWithLink(title, text, link_url, link_text):
     outerWrapper = HtmlElement(
@@ -55,3 +73,20 @@ def buildCard(title, text):
     cardBody.addContent(cardText)
     outerWrapper.addContent(cardBody)
     return str(outerWrapper)
+
+def buildWikipediaCard(authorName):
+    request = WikipediaAPI.queryLatest(authorName)
+    pageID = WikipediaAPI.getPageID(request)
+    
+    if (not WikipediaAPI.pageExists(pageID)):
+        return '' # Page doesn't exist
+
+    pageURL = WikipediaAPI.getURLFromPageID(pageID)
+    wikiArticleHtml = urllib.request.urlopen(pageURL)
+    articleSoup = BeautifulSoup(wikiArticleHtml, 'html.parser')
+    introParagraph = str(
+        HtmlElement(
+        tag='p',
+        content= 'Fetched from Wikipedia.org',
+    )) + str(articleSoup.find('p'))
+    return buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")

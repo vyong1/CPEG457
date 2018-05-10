@@ -1,6 +1,7 @@
 # Documentation https://www.mediawiki.org/wiki/API:Main_page
 import requests
 import re
+import json
 
 class WikipediaAPI:
     '''
@@ -24,6 +25,19 @@ class WikipediaAPI:
             'rvprop' : 'content'
         }
         return WikipediaAPI.get(params)
+    
+    def hasPulitzer(stringData):
+        return (str.find(stringData, 'Pulitzer') >= 0)
 
-def hasPulitzer(stringData):
-    return (str.find(stringData, 'Pulitzer') >= 0)
+    def getPageID(request):
+        requestJson = json.loads(request.content)
+        for page in requestJson['query']['pages']:
+            return page
+
+    def getURLFromPageID(pageID):
+        return "http://en.wikipedia.org/?curid=" + pageID
+
+    def pageExists(pageId):
+        if(pageId == -1):
+            return False
+        return True
