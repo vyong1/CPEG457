@@ -47,7 +47,7 @@ for i in range(0, 50):
     byline += str(soup)[byline_index + i]
 
 print(byline)
-# author_dict = {}
+author_dict = {}
 
 # for author in possible_authors:
 #     if author in author_dict.keys():
