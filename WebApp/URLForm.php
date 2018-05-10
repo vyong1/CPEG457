@@ -9,6 +9,9 @@
     </head>
     <body>
         <div class="content">
+            <a href="index.php">
+                <img src="static/Pinocchio.png" class="index-btn"> 
+            </a>
             <form action="URLFormSubmit.php" method="post">
                  <div class="form-group">
                     <label for="url_input">Article URL</label>

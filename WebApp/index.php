@@ -9,6 +9,9 @@
     <body>
         <div class="content">
             <div class="container">
+                <a href="index.php">
+                    <img src="static/Pinocchio.png" class="index-btn"> 
+                </a>
                 <div class="row margin10">
                     <a href="EmbeddedTwitter.php" class="btn" role="button">Embedded Twitter</a>
                 </div>

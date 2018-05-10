@@ -9,9 +9,9 @@
     </head>
     <body>
         <div class="content">
-            <div>
-                <a href="index.php" class="btn btn-light emoji-button" role="button">🤥</a>
-            </div>
+            <a href="index.php">
+                <img src="static/Pinocchio.png" class="index-btn"> 
+            </a>
             <?php
             // Clear the pipe
             $pipefile = fopen("pipe", "w") or die("Unable to open pipe");
