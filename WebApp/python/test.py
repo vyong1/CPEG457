@@ -33,7 +33,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
  #                        'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
   #                       encoding='utf-8')
 
-input_url = "https://www.cnn.com/2018/05/11/politics/donald-trump-foreign-policy/index.html"
+input_url = "https://www.cnn.com/2018/05/10/politics/cnn-poll-russia-mueller-republicans-special-counsel/index.html"
 
 # tagged_text = Aylien_api.getStories.createTags(Aylien_api.getStories.createRawText(input_url))
 # possible_authors = Aylien_api.getStories.createPossibleAuthor(tagged_text)
@@ -43,6 +43,12 @@ html = urllib.request.urlopen(input_url)
 soup = BeautifulSoup(html, 'html.parser')
 raw_text = soup.get_text()
 #print(soup)
+def checkLine(line, author):
+    if(line.find(author) == -1):
+        return False
+    else:
+        return True
+
 def find_all(a_str, sub):
     start = 0
     while True:
@@ -52,11 +58,12 @@ def find_all(a_str, sub):
         start += len(sub) # use start += 1 to find overlapping matches
 
 def getByline(inputSoup):
+    # Finds the first use of by in the html. Results are inconsistent
     byline_index = str(inputSoup).find('by')
     htmlLine = ''
     byline = ''
     flag = False
-
+    # get the sorrounding line
     for i in range(-20, 20):
         htmlLine += str(inputSoup)[byline_index + i]
 
@@ -65,24 +72,36 @@ def getByline(inputSoup):
             flag = not flag
         elif(flag):
             byline += j
-    print(byline)
-    output = inputSoup.find(class_ = byline)
-    return output
+    return byline
 
 def searchAuthor(inputSoup, possibleAuthor):
-    author_indexes = find_all(str(inputSoup), possibleAuthor)
+    authorIndexes = find_all(str(inputSoup), possibleAuthor)
     allLines = []
     currentLine = '' 
     line_count = 0
-    for element in author_indexes:
-        for i in range(-30, 30):
+    for element in authorIndexes:
+        i = -30
+        for i in range(-100, 30):
             currentLine += str(inputSoup)[element + i]
         allLines.append(currentLine)
         currentLine = ''
     return allLines
 
-print(searchAuthor(soup, 'Stephen Collinson'))
-author_dict = {}
+def findAuthor(inputSoup, authorList):
+    # Simple way to look for author. Needs fine tuning
+    byline = getByline(inputSoup)
+    for element in authorList:
+        if(checkLine(byline, element)):
+            return element
+        else:
+            authorOccurrences = searchAuthor(inputSoup, element)
+            for line in authorOccurrences:
+                if(checkLine(line, 'author')):
+                    return element
+    return
+
+possible_authors = ['David Gergen', 'Robert Mueller', 'David Rutz', 'Stephanie Clifford', 'Sean Sullivan', 'Jennifer Agiesta']
+print(findAuthor(soup, possible_authors))
 
 # for author in possible_authors:
 #     if author in author_dict.keys():
