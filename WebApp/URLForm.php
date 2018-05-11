@@ -12,16 +12,18 @@
             <a href="index.php">
                 <img src="static/Pinocchio.png" class="index-btn"> 
             </a>
-            <form action="URLFormSubmit.php" method="post">
-                 <div class="form-group">
-                    <label for="url_input">Article URL</label>
-                    <input type="text" class="form-control" id="url_input" name="url_input" placeholder="Enter the Article URL">
-                </div>
+            <div class="margin10">
+                <form action="URLFormSubmit.php" method="post">
+                    <div class="form-group">
+                        <label for="url_input">Article URL</label>
+                        <input type="text" class="form-control" id="url_input" name="url_input" placeholder="Enter the Article URL">
+                    </div>
 
-                <div>
-                    <input type="submit">
-                </div>
-            </form>
+                    <div>
+                        <input type="submit">
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>
