@@ -80,17 +80,16 @@ def showMore():
 # !!! DANGER !!!
 # This code will always run if getStories.py is imported
 
-# input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
+input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
 
-#tagged_text = createTags(createRawText(input_url))
-#possible_authors = createPossibleAuthor(tagged_text)
-#print(possible_authors)
-# author = "Nina Mohan"
+# tagged_text = createTags(createRawText(input_url))
+# possible_authors = createPossibleAuthor(tagged_text)
+# print(possible_authors)
+author = "Ryan Struyk"
 
-# api_response = getStories(author, default_count)
-# for element in api_response.stories:
-#         print(element.title)
-#         print(element.links.permalink)
+api_response = getStories(author, default_count)
+for element in api_response.stories:
+        print(element)
 
 # showMore()
 # api_response = getStories(author, default_count)

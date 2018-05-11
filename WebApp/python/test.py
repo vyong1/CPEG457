@@ -33,7 +33,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
  #                        'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
   #                       encoding='utf-8')
 
-input_url = "https://www.cnn.com/2018/05/10/politics/cnn-poll-russia-mueller-republicans-special-counsel/index.html"
+input_url = "https://www.usatoday.com/story/news/world/2018/05/10/3-americans-freed-north-korea-donald-trump/595490002/"
 
 # tagged_text = Aylien_api.getStories.createTags(Aylien_api.getStories.createRawText(input_url))
 # possible_authors = Aylien_api.getStories.createPossibleAuthor(tagged_text)
@@ -100,7 +100,8 @@ def findAuthor(inputSoup, authorList):
                     return element
     return
 
-possible_authors = ['David Gergen', 'Robert Mueller', 'David Rutz', 'Stephanie Clifford', 'Sean Sullivan', 'Jennifer Agiesta']
+possible_authors = ['Oren Dorell', 'Mike Pompeo', 'Otto Warmbier']
+print(str(soup))
 print(findAuthor(soup, possible_authors))
 
 # for author in possible_authors:
