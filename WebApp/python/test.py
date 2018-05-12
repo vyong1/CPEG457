@@ -2,7 +2,9 @@
 import urllib
 import os
 # local imports
-from HtmlElement import HtmlElement
+import HtmlElement
+import getStories
+import NameStats
 # aylien news api imports
 import aylien_news_api
 from aylien_news_api.rest import ApiException
@@ -33,7 +35,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
  #                        'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
   #                       encoding='utf-8')
 
-input_url = "https://www.usatoday.com/story/news/world/2018/05/10/3-americans-freed-north-korea-donald-trump/595490002/"
+input_url = "http://www.foxnews.com/politics/2018/05/11/north-korea-will-receive-us-economic-assistance-if-it-gives-up-nuclear-weapons-pompeo-says.html"
 
 # tagged_text = Aylien_api.getStories.createTags(Aylien_api.getStories.createRawText(input_url))
 # possible_authors = Aylien_api.getStories.createPossibleAuthor(tagged_text)
@@ -78,9 +80,7 @@ def searchAuthor(inputSoup, possibleAuthor):
     authorIndexes = find_all(str(inputSoup), possibleAuthor)
     allLines = []
     currentLine = '' 
-    line_count = 0
     for element in authorIndexes:
-        i = -30
         for i in range(-100, 30):
             currentLine += str(inputSoup)[element + i]
         allLines.append(currentLine)
@@ -99,16 +99,41 @@ def findAuthor(inputSoup, authorList):
                 if(checkLine(line, 'author')):
                     return element
     return
+def createAuthorDict(authorList):
+    # Creates a dictionary for the possible authors in the article. 
+    author_dict = {}
+    for author in authorList:
+        if author in author_dict.keys():
+            author_dict[author] += 1
+        else:
+            author_dict[author] = 1
+    return author_dict
 
-possible_authors = ['Oren Dorell', 'Mike Pompeo', 'Otto Warmbier']
-print(str(soup))
-print(findAuthor(soup, possible_authors))
 
-# for author in possible_authors:
-#     if author in author_dict.keys():
-#         author_dict[author] += 1
-#     else:
-#         author_dict[author] = 1
+def compileAuthors(url):
+    # Gathers and Refines the author search
+    rawText = getStories.createRawText(url)
+    tags = getStories.createTags(rawText)
+    authorList = getStories.createPossibleAuthor(tags)
+    author_dict = createAuthorDict(authorList)
+    html = urllib.request.urlopen(input_url)
+    soup = BeautifulSoup(html, 'html.parser')
+    refinedList = restrictAuthors(author_dict)
+    return findAuthor(soup, refinedList)
 
-#for author in author_dict:
-#    print(author + ':' + str(author_dict[author]))
+def restrictAuthors(authorDict):
+    # Restricts the author list based on different criteria. Currently just by count
+    newAuthorList = {}
+    for author in authorDict:
+        if(authorDict[author] < 5):
+            newAuthorList[author] = 1
+    return newAuthorList
+
+def storyList(url):
+    author = compileAuthors(url)
+    result = getStories.getStories(author)
+    return result
+
+
+
+print(storyList(input_url))

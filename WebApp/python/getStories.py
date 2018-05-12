@@ -22,8 +22,8 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 api_instance = aylien_news_api.DefaultApi()
 
 # This needs to be changed to match your NER directory
-st = StanfordNERTagger('C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
-                         'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
+st = StanfordNERTagger('C:/Users/Francis/Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
+                         'C:/Users/Francis/Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
                          encoding='utf-8')
 
 ################################################
@@ -32,7 +32,7 @@ st = StanfordNERTagger('C:/Users/Frank/My Documents/Search and Data Mining/CPEG4
 
 ################################################
 
-def getStories(author_name, count=10):
+def getStories(author_name, count=default_count):
     # Takes in authors name, sets it as an option for the api
     opts = {
       'author_name': author_name,
@@ -68,8 +68,6 @@ def createPossibleAuthor(tags):
                 name += " " + tags[x + 1][0]
                 x += 1
             author_list.append(name)
-        elif (tags[x][0] == 'by'):
-            author_list.append(tags[x][0])
         x += 1
     return author_list
            
@@ -77,22 +75,3 @@ def showMore():
     global default_count
     default_count += 10
     return
-# !!! DANGER !!!
-# This code will always run if getStories.py is imported
-
-input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
-
-# tagged_text = createTags(createRawText(input_url))
-# possible_authors = createPossibleAuthor(tagged_text)
-# print(possible_authors)
-author = "Ryan Struyk"
-
-api_response = getStories(author, default_count)
-for element in api_response.stories:
-        print(element)
-
-# showMore()
-# api_response = getStories(author, default_count)
-# for element in api_response.stories:
-#         print(element.title)
-#         print(element.links.permalink)

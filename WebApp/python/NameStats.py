@@ -1,5 +1,5 @@
 class NameStats():
-    def __init__(self, TF, nameIsInTitle, nameIsInLink, preceededByKeyWord, firstOccurence);
+    def __init__(self, TF, nameIsInTitle, nameIsInLink, preceededByKeyWord, firstOccurence):
         self.TF = TF
         self.nameIsInTitle = nameIsInTitle
         self.nameIsInLink = nameIsInLink
