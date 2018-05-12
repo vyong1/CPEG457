@@ -44,6 +44,7 @@ input_url = "http://www.foxnews.com/politics/2018/05/11/north-korea-will-receive
 html = urllib.request.urlopen(input_url)
 soup = BeautifulSoup(html, 'html.parser')
 raw_text = soup.get_text()
+author_dict = {}
 #print(soup)
 def checkLine(line, author):
     if(line.find(author) == -1):
@@ -87,27 +88,29 @@ def searchAuthor(inputSoup, possibleAuthor):
         currentLine = ''
     return allLines
 
-def findAuthor(inputSoup, authorList):
+def findAuthor(inputSoup, author):
     # Simple way to look for author. Needs fine tuning
     byline = getByline(inputSoup)
-    for element in authorList:
-        if(checkLine(byline, element)):
-            return element
-        else:
-            authorOccurrences = searchAuthor(inputSoup, element)
-            for line in authorOccurrences:
-                if(checkLine(line, 'author')):
-                    return element
-    return
+    if(checkLine(byline, author)):
+        return True
+    else:
+        authorOccurrences = searchAuthor(inputSoup, author)
+        for line in authorOccurrences:
+            if(checkLine(line, 'author')):
+                return True
+    return False
+
+
 def createAuthorDict(authorList):
     # Creates a dictionary for the possible authors in the article. 
+    global author_dict
     author_dict = {}
     for author in authorList:
         if author in author_dict.keys():
             author_dict[author] += 1
         else:
             author_dict[author] = 1
-    return author_dict
+    return
 
 
 def compileAuthors(url):
@@ -115,18 +118,26 @@ def compileAuthors(url):
     rawText = getStories.createRawText(url)
     tags = getStories.createTags(rawText)
     authorList = getStories.createPossibleAuthor(tags)
-    author_dict = createAuthorDict(authorList)
+    createAuthorDict(authorList)
     html = urllib.request.urlopen(input_url)
     soup = BeautifulSoup(html, 'html.parser')
-    refinedList = restrictAuthors(author_dict)
-    return findAuthor(soup, refinedList)
+    refinedList = restrictAuthors(soup)
+    return refinedList
 
-def restrictAuthors(authorDict):
+def restrictAuthors(inputSoup):
     # Restricts the author list based on different criteria. Currently just by count
     newAuthorList = {}
-    for author in authorDict:
-        if(authorDict[author] < 5):
-            newAuthorList[author] = 1
+    location = 0
+    global author_dict
+    for author in author_dict:
+        if(author_dict[author] < 5):
+            newAuthorList[author] = 30 - location
+        elif(author_dict[author] < 7):
+            newAuthorList[author] = 25 - location
+        location += 1
+    for element in newAuthorList:
+        if (findAuthor(inputSoup, element) and newAuthorList[element] > 20):
+            newAuthorList[element] += 50
     return newAuthorList
 
 def storyList(url):
@@ -136,4 +147,4 @@ def storyList(url):
 
 
 
-print(storyList(input_url))
+print(compileAuthors(input_url))
