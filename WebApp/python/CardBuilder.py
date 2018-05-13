@@ -81,6 +81,11 @@ def buildWikipediaCard(authorName):
     if (not WikipediaAPI.pageExists(pageID)):
         return '' # Page doesn't exist
 
+    
+    hasPulitz = "Yes"
+    if(WikipediaAPI.hasPulitzer(str(r.json())) is False):
+        hasPulitz = "No"
+
     pageURL = WikipediaAPI.getURLFromPageID(pageID)
     wikiArticleHtml = urllib.request.urlopen(pageURL)
     articleSoup = BeautifulSoup(wikiArticleHtml, 'html.parser')
@@ -89,8 +94,10 @@ def buildWikipediaCard(authorName):
         tag='p',
         content= 'Fetched from Wikipedia.org',
     )) + str(articleSoup.find('p'))
-    return buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
-
+    html = buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
+    html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz))
+    return html
+    
 def buildArticleCards(resp):
     if(len(resp.stories) == 0):
         print("No articles found")
