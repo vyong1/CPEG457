@@ -90,3 +90,18 @@ def buildWikipediaCard(authorName):
         content= 'Fetched from Wikipedia.org',
     )) + str(articleSoup.find('p'))
     return buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
+
+def buildArticleCards(resp):
+    if(len(resp.stories) == 0):
+        print("No articles found")
+        return ''
+    else:
+        html = ""
+        for story in resp.stories:
+            html += buildCardWithLink(
+                title=str(story.title),
+                text=str(story.body),
+                link_url=str(story.links.permalink),
+                link_text="Read More"
+            )
+        return html
