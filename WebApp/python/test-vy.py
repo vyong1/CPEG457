@@ -5,6 +5,7 @@ import json
 # local imports
 from HtmlElement import HtmlElement
 from Wikipedia_api.WikipediaAPI import *
+from getStories import *
 from PipeFile import PipeFile
 import CardBuilder
 # aylien news api imports
@@ -37,29 +38,12 @@ st = StanfordNERTagger('python/Aylien_api/NER/classifiers/english.all.3class.dis
                          encoding='utf-8')
 
 
-def authorDict():
-    input_url = "https://www.cnn.com/2018/05/05/politics/trump-nra-speech-angers-french/index.html"
-
-    tagged_text = Aylien_api.getStories.createTags(Aylien_api.getStories.createRawText(input_url))
-    possible_authors = Aylien_api.getStories.createPossibleAuthor(tagged_text)
-    print(possible_authors)
-
-    html = urllib.request.urlopen(input_url)
-    soup = BeautifulSoup(html, 'html.parser')
-    # print(soup.h1)
-
-    author_dict = {}
-
-    for author in possible_authors:
-        if author in author_dict.keys():
-            author_dict[author] += 1
-        else:
-            author_dict[author] = 1
-
-    for author in author_dict:
-        print(author + ':' + str(author_dict[author]))
+def authorDictTest():
+    name = 'Ralph Ellis'
+    r = getStories(name)
+    print(r)
     
 def wikiApiTest():
     print(CardBuilder.buildWikipediaCard('Will Smith'))
 
-wikiApiTest()
+authorDictTest()

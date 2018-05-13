@@ -22,8 +22,8 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 api_instance = aylien_news_api.DefaultApi()
 
 # This needs to be changed to match your NER directory
-st = StanfordNERTagger('C:/Users/Francis/Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
-                         'C:/Users/Francis/Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
+st = StanfordNERTagger('python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
+                         'python/Aylien_api/NER/stanford-ner.jar',
                          encoding='utf-8')
 
 ################################################
