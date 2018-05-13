@@ -1,6 +1,7 @@
 .ipynb_checkpoints/
 **/__pycache__
 **/pipe
+**/pipe2
 **/*.pyc
 **/.vscode
 cout.txt
