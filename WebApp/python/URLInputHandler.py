@@ -11,8 +11,10 @@ url = POST['url_input']
 
 # TODO Extract the name of the author
 # Assume the name is 'John Archibald' for now
+print("Line 14")
 authorName = test.compileAuthors(url)
-
+print("Line 16")
+print(authorName)
 # TODO Enter the author's name into the Aylien-Api
 
 
@@ -29,7 +31,7 @@ PipeFile.clear()
 PipeFile.append("<h1 class='margin10'>Here's What We Found:</h1>")
 PipeFile.append(CardBuilder.buildCard('Article URL', url))
 PipeFile.append(CardBuilder.buildCard('Author', authorName))
-PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
+# PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
 PipeFile.append(CardBuilder.buildCardWithLink('Article', 'Some Article Text Some Article Text Some Article Text Some Article Text ', 'haha', 'This a Link'))
-PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
+# PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
 PipeFile.append(CardBuilder.buildArticleCards(test.storyList(authorName)))

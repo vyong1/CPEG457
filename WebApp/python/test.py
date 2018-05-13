@@ -30,7 +30,6 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
-author_dict = {}
 
 
 def checkLine(line, author):
@@ -86,14 +85,13 @@ def findAuthor(inputSoup, author):
 
 def createAuthorDict(authorList):
     # Creates a dictionary for the possible authors in the article. 
-    global author_dict
     author_dict = {}
     for author in authorList:
         if author in author_dict.keys():
             author_dict[author] += 1
         else:
             author_dict[author] = 1
-    return
+    return author_dict
 
 
 def compileAuthors(url):
@@ -101,18 +99,16 @@ def compileAuthors(url):
     rawText = getStories.createRawText(url)
     tags = getStories.createTags(rawText)
     authorList = getStories.createPossibleAuthor(tags)
-    createAuthorDict(authorList)
+    authorDict = createAuthorDict(authorList)
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, 'html.parser')
-    refinedList = restrictAuthors(soup)
-    print(refinedList)
+    refinedList = restrictAuthors(soup, authorDict)
     return max(refinedList, key=refinedList.get)
 
-def restrictAuthors(inputSoup):
+def restrictAuthors(inputSoup, author_dict):
     # Restricts the author list based on different criteria. Currently just by count
     newAuthorList = {}
     location = 0
-    global author_dict
     title = str(inputSoup.find('h1'))
     for author in author_dict:
         if(title.find(author) == -1):

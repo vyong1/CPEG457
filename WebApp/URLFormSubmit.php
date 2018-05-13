@@ -28,7 +28,7 @@
             // Call appropriate python script to build up the file to the pipe
             // IMPORTANT! Replace python3 here with whatever you use for python
             //            (i.e. py, python, python3, py3, etc.)
-            exec('python3 python/URLInputHandler.py');
+            exec('py python/URLInputHandler.py');
 
             // Read the pipe file
             $pipefile = fopen("pipe", "r") or die("Unable to open pipe");
