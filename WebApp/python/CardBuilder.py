@@ -97,11 +97,14 @@ def buildWikipediaCard(authorName):
     html = buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
     html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz))
     return html
-    
+
 def buildArticleCards(resp):
     if(len(resp.stories) == 0):
         print("No articles found")
-        return ''
+        return buildCard(
+            title=":(",
+            text="Sorry, we couldn't find any articles by this author"
+        )
     else:
         html = ""
         for story in resp.stories:
