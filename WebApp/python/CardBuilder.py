@@ -83,7 +83,7 @@ def buildWikipediaCard(authorName):
 
     
     hasPulitz = "Yes"
-    if(WikipediaAPI.hasPulitzer(str(r.json())) is False):
+    if(WikipediaAPI.hasPulitzer(str(request.json())) is False):
         hasPulitz = "No"
 
     pageURL = WikipediaAPI.getURLFromPageID(pageID)
@@ -95,7 +95,7 @@ def buildWikipediaCard(authorName):
         content= 'Fetched from Wikipedia.org',
     )) + str(articleSoup.find('p'))
     html = buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
-    html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz))
+    html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz)
     return html
 
 def buildArticleCards(resp):
