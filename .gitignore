@@ -1,6 +1,6 @@
 .ipynb_checkpoints/
 **/__pycache__
-/php/pipe
+**/pipe
 **/*.pyc
 **/.vscode
 cout.txt
