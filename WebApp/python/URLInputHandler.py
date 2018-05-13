@@ -9,29 +9,15 @@ import test
 POST = POSTParser.parse()
 url = POST['url_input']
 
-# TODO Extract the name of the author
-# Assume the name is 'John Archibald' for now
-print("Line 14")
+# Extract the name of the author
 authorName = test.compileAuthors(url)
-print("Line 16")
-print(authorName)
-# TODO Enter the author's name into the Aylien-Api
-
-
-# TODO Fetch a bunch of relevant articles and put them into cards
-
-# Check for pulitzer
-r = WikipediaAPI.queryLatest(authorName)
-hasPulitz = "Yes"
-if(WikipediaAPI.hasPulitzer(str(r.json())) is False):
-    hasPulitz = "No"
 
 # Output some helpful html
 PipeFile.clear()
 PipeFile.append("<h1 class='margin10'>Here's What We Found:</h1>")
 PipeFile.append(CardBuilder.buildCard('Article URL', url))
 PipeFile.append(CardBuilder.buildCard('Author', authorName))
-# PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
-PipeFile.append(CardBuilder.buildCardWithLink('Article', 'Some Article Text Some Article Text Some Article Text Some Article Text ', 'haha', 'This a Link'))
-# PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
+# Make card for wikipedia
+PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
+# Make cards for articles
 PipeFile.append(CardBuilder.buildArticleCards(test.storyList(authorName)))
