@@ -3,6 +3,7 @@ import POSTParser
 from Wikipedia_api.WikipediaAPI import *
 import CardBuilder
 import sys
+import test
 
 # Parse the POST and extract the URL
 POST = POSTParser.parse()
@@ -31,3 +32,4 @@ PipeFile.append(CardBuilder.buildCard('Author', authorName))
 PipeFile.append(CardBuilder.buildCard('Does the Author have a Pulitzer?', hasPulitz))
 PipeFile.append(CardBuilder.buildCardWithLink('Article', 'Some Article Text Some Article Text Some Article Text Some Article Text ', 'haha', 'This a Link'))
 PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
+PipeFile.append(CardBuilder.buildArticleCards(test.storyList(url)))

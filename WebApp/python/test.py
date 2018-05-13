@@ -21,6 +21,7 @@ import re
 # Establish the path to java
 java_path = "C:/Program Files/Java/jdk-10.0.1/bin/java.exe"
 os.environ['JAVAHOME'] = java_path
+default_count = 10
 
 # Configure API key authorization: app_id
 aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '59793aeb'
@@ -28,17 +29,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '5979
 aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '6557890cdc6ffabe3203700616bcb1fb'
 
 # create an instance of the API class
-#api_instance = aylien_news_api.DefaultApi()
-
-# This needs to be changed to match your NER directory
-#st = StanfordNERTagger('C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/classifiers/english.all.3class.distsim.crf.ser.gz',
- #                        'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
-  #                       encoding='utf-8')
-
-input_url = "https://www.washingtonpost.com/politics/no-one-has-a-leg-up-in-wide-open-2020-presidential-field-democrats-jockey-to-define-their-party--and-gain-an-advantage/2018/05/12/42ba34f2-5547-11e8-9c91-7dab596e8252_story.html?utm_term=.700e261410fb"
-
-
-
+api_instance = aylien_news_api.DefaultApi()
 author_dict = {}
 
 
@@ -58,20 +49,16 @@ def find_all(a_str, sub):
 
 def getByline(inputSoup):
     # Finds the first use of by in the html. Results are inconsistent
-    byline_index = str(inputSoup).find('by')
+    byline_index = str(inputSoup).find('byline')
     htmlLine = ''
-    byline = ''
-    flag = False
-    # get the sorrounding line
-    for i in range(-20, 20):
-        htmlLine += str(inputSoup)[byline_index + i]
-
-    for j in htmlLine:
-        if(j == '"'):
-            flag = not flag
-        elif(flag):
-            byline += j
-    return byline
+    if (byline_index < 0):
+        byline_index = str(inputSoup).find('by')
+        for i in range(-40, 40):
+            htmlLine += str(inputSoup)[byline_index + i]
+    else:
+        for i in range(-100, 100):
+            htmlLine += str(inputSoup)[byline_index + i]
+    return htmlLine
 
 def searchAuthor(inputSoup, possibleAuthor):
     authorIndexes = find_all(str(inputSoup), possibleAuthor)
@@ -92,7 +79,7 @@ def findAuthor(inputSoup, author):
     else:
         authorOccurrences = searchAuthor(inputSoup, author)
         for line in authorOccurrences:
-            if(checkLine(line, 'author')):
+            if(checkLine(line, 'author') or checkLine(line, 'byline')):
                 return True
     return False
 
@@ -118,18 +105,21 @@ def compileAuthors(url):
     html = urllib.request.urlopen(input_url)
     soup = BeautifulSoup(html, 'html.parser')
     refinedList = restrictAuthors(soup)
-    return refinedList
+    print(refinedList)
+    return max(refinedList, key=refinedList.get)
 
 def restrictAuthors(inputSoup):
     # Restricts the author list based on different criteria. Currently just by count
     newAuthorList = {}
     location = 0
     global author_dict
+    title = str(inputSoup.find('h1'))
     for author in author_dict:
-        if(author_dict[author] < 3 and author.find(' ') > 0):
-            newAuthorList[author] = 30 - location
-        elif(author_dict[author] < 5 and author.find(' ') > 0):
-            newAuthorList[author] = 25 - location
+        if(title.find(author) == -1):
+            if(author_dict[author] < 5 and author.find(' ') > 0):
+                newAuthorList[author] = 30 - location
+            elif(author_dict[author] < 7 and author.find(' ') > 0):
+                newAuthorList[author] = 25 - location
         location += 1
     for element in newAuthorList:
         if (newAuthorList[element] > 20):
@@ -141,7 +131,3 @@ def storyList(url):
     author = compileAuthors(url)
     result = getStories.getStories(author)
     return result
-
-
-
-print(compileAuthors(input_url))
