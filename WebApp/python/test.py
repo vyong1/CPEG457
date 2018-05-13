@@ -35,17 +35,13 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
  #                        'C:/Users/Frank/My Documents/Search and Data Mining/CPEG457/WebApp/python/Aylien_api/NER/stanford-ner.jar',
   #                       encoding='utf-8')
 
-input_url = "http://www.foxnews.com/politics/2018/05/11/north-korea-will-receive-us-economic-assistance-if-it-gives-up-nuclear-weapons-pompeo-says.html"
+input_url = "https://www.washingtonpost.com/politics/no-one-has-a-leg-up-in-wide-open-2020-presidential-field-democrats-jockey-to-define-their-party--and-gain-an-advantage/2018/05/12/42ba34f2-5547-11e8-9c91-7dab596e8252_story.html?utm_term=.700e261410fb"
 
-# tagged_text = Aylien_api.getStories.createTags(Aylien_api.getStories.createRawText(input_url))
-# possible_authors = Aylien_api.getStories.createPossibleAuthor(tagged_text)
-# print(possible_authors)
 
-html = urllib.request.urlopen(input_url)
-soup = BeautifulSoup(html, 'html.parser')
-raw_text = soup.get_text()
+
 author_dict = {}
-#print(soup)
+
+
 def checkLine(line, author):
     if(line.find(author) == -1):
         return False
@@ -130,14 +126,15 @@ def restrictAuthors(inputSoup):
     location = 0
     global author_dict
     for author in author_dict:
-        if(author_dict[author] < 5):
+        if(author_dict[author] < 3 and author.find(' ') > 0):
             newAuthorList[author] = 30 - location
-        elif(author_dict[author] < 7):
+        elif(author_dict[author] < 5 and author.find(' ') > 0):
             newAuthorList[author] = 25 - location
         location += 1
     for element in newAuthorList:
-        if (findAuthor(inputSoup, element) and newAuthorList[element] > 20):
-            newAuthorList[element] += 50
+        if (newAuthorList[element] > 20):
+            if(findAuthor(inputSoup, element)):
+                newAuthorList[element] += 30
     return newAuthorList
 
 def storyList(url):
