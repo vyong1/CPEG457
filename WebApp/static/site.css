@@ -12,3 +12,7 @@ div.content{
     height: 70px;
     margin-bottom: 10px;
 }
+
+.card{
+    display: none;
+}
