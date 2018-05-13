@@ -129,5 +129,3 @@ def __restrictAuthors(inputSoup, author_dict):
 def storyList(author):
     result = getStories.getStories(author)
     return result
-
-print(compileAuthors(url))
