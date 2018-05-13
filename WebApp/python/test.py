@@ -102,7 +102,7 @@ def compileAuthors(url):
     tags = getStories.createTags(rawText)
     authorList = getStories.createPossibleAuthor(tags)
     createAuthorDict(authorList)
-    html = urllib.request.urlopen(input_url)
+    html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, 'html.parser')
     refinedList = restrictAuthors(soup)
     print(refinedList)
@@ -127,7 +127,6 @@ def restrictAuthors(inputSoup):
                 newAuthorList[element] += 30
     return newAuthorList
 
-def storyList(url):
-    author = compileAuthors(url)
+def storyList(author):
     result = getStories.getStories(author)
     return result
