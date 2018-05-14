@@ -31,6 +31,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
+url = "https://www.cnn.com/2018/05/12/politics/us-embassy-mideast-tensions-policy-changes/index.html"
 
 
 
@@ -57,8 +58,8 @@ def __getByline(inputSoup):
     byline = str(inputSoup)[byline_index: byline_index + 200]
     return byline
 
-def __searchAuthor(inputSoup):
-    authorIndexes = __findAll(str(inputSoup), 'author')
+def __searchAuthor(inputSoup, possibleAuthor):
+    authorIndexes = __findAll(str(inputSoup), possibleAuthor)
     allLines = []
     for element in authorIndexes:
         currentLine = '' 
@@ -68,13 +69,14 @@ def __searchAuthor(inputSoup):
         currentLine = ''
     return allLines
 
-def __findAuthor(inputSoup, author, byline, authorOccurrences):
+def __findAuthor(inputSoup, author, byline):
     # Simple way to look for author. Needs fine tuning
     if(__checkLine(byline, author)):
         return True
     else:
+        authorOccurrences = __searchAuthor(inputSoup, author)
         for line in authorOccurrences:
-            if(__checkLine(line, author)):
+            if(__checkLine(line, 'author')):
                 return True
     return False
 
@@ -108,15 +110,19 @@ def __restrictAuthors(inputSoup, author_dict):
     location = 0
     title = str(inputSoup.find('h1'))
     byline = __getByline(inputSoup)
-    authorOccurrences = __searchAuthor(inputSoup)
     for author in author_dict:
         if(title.find(author) == -1):
             newAuthorList[author] = 30 - location - 2 * author_dict[author]
         location += 1
     print(newAuthorList)
     for element in newAuthorList:
+<<<<<<< HEAD
         if (newAuthorList[element] > 15):
             if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
+=======
+        if (newAuthorList[element] > 20):
+            if(__findAuthor(inputSoup, element, byline)):
+>>>>>>> 8dca380c47272afd9e6a6ba62ed4dc06e7643454
                 newAuthorList[element] += 30
                 break
     return newAuthorList
