@@ -5,6 +5,7 @@ import os
 import HtmlElement
 import getStories
 import NameStats
+from PipeFile import *  
 # aylien news api imports
 import aylien_news_api
 from aylien_news_api.rest import ApiException
@@ -32,6 +33,7 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 api_instance = aylien_news_api.DefaultApi()
 
 
+
 def __checkLine(line, author):
     if(line.find(author) == -1):
         return False
@@ -49,15 +51,11 @@ def __findAll(a_str, sub):
 def __getByline(inputSoup):
     # Finds the first use of by in the html. Results are inconsistent
     byline_index = str(inputSoup).find('byline')
-    htmlLine = ''
-    if (byline_index < 0):
+    if (byline_index < 0): # byline not found
         byline_index = str(inputSoup).find('by')
-        for i in range(-40, 40):
-            htmlLine += str(inputSoup)[byline_index + i]
-    else:
-        for i in range(-100, 100):
-            htmlLine += str(inputSoup)[byline_index + i]
-    return htmlLine
+    # Extract text after 'byline' or 'by'
+    byline = str(inputSoup)[byline_index: byline_index + 200]
+    return byline
 
 def __searchAuthor(inputSoup):
     authorIndexes = __findAll(str(inputSoup), 'author')
@@ -99,11 +97,9 @@ def compileAuthors(url):
     tags = getStories.createTags(rawText)
     authorList = getStories.createPossibleAuthor(tags)
     authorDict = __createAuthorDict(authorList)
-    print(authorDict)
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, 'html.parser')
     refinedList = __restrictAuthors(soup, authorDict)
-    print(refinedList)
     return max(refinedList, key=refinedList.get)
 
 def __restrictAuthors(inputSoup, author_dict):
@@ -115,11 +111,11 @@ def __restrictAuthors(inputSoup, author_dict):
     authorOccurrences = __searchAuthor(inputSoup)
     for author in author_dict:
         if(title.find(author) == -1):
-            newAuthorList[author] = 30 - location - author_dict[author]
+            newAuthorList[author] = 30 - location - 2 * author_dict[author]
         location += 1
     print(newAuthorList)
     for element in newAuthorList:
-        if (newAuthorList[element] > 20):
+        if (newAuthorList[element] > 15):
             if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
                 newAuthorList[element] += 30
                 break
