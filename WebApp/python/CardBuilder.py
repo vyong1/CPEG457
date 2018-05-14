@@ -77,7 +77,7 @@ def buildCard(title, text):
 def buildWikipediaCard(authorName):
     request = WikipediaAPI.queryLatest(authorName)
     pageID = WikipediaAPI.getPageID(request)
-    
+
     if (not WikipediaAPI.pageExists(pageID)):
         html = '' # Page doesn't exist
     else:
@@ -113,13 +113,23 @@ def buildArticleCards(resp):
             else:
                 body = body[0:500]
             body += "..."
+            # Replace non-html characters
             body = body.replace("'", "&#39;")
             body = body.replace("’", "&#39;")
             body = body.replace("—", "-")
+
+            # Add the domain's logo
+            # <img src="url">
+            logoURL = str(story.source.logo_url)
+            if not (logoURL == "None"):
+                imgTag = '<div><img src="' + logoURL + '"></div>'
+                body = imgTag + body
+
             html += buildCardWithLink(
                 title=str(story.title),
                 text=body,
                 link_url=str(story.links.permalink),
                 link_text="Read More"
             )
+            
         return html
