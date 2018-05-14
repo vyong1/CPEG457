@@ -30,7 +30,6 @@ aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '655
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
-url = "https://www.cnn.com/2018/05/12/politics/us-embassy-mideast-tensions-policy-changes/index.html"
 
 
 def __checkLine(line, author):
@@ -60,8 +59,8 @@ def __getByline(inputSoup):
             htmlLine += str(inputSoup)[byline_index + i]
     return htmlLine
 
-def __searchAuthor(inputSoup, possibleAuthor):
-    authorIndexes = __findAll(str(inputSoup), possibleAuthor)
+def __searchAuthor(inputSoup):
+    authorIndexes = __findAll(str(inputSoup), 'author')
     allLines = []
     for element in authorIndexes:
         currentLine = '' 
@@ -71,14 +70,13 @@ def __searchAuthor(inputSoup, possibleAuthor):
         currentLine = ''
     return allLines
 
-def __findAuthor(inputSoup, author, byline):
+def __findAuthor(inputSoup, author, byline, authorOccurrences):
     # Simple way to look for author. Needs fine tuning
     if(__checkLine(byline, author)):
         return True
     else:
-        authorOccurrences = __searchAuthor(inputSoup, author)
         for line in authorOccurrences:
-            if(__checkLine(line, 'author')):
+            if(__checkLine(line, author)):
                 return True
     return False
 
@@ -114,6 +112,7 @@ def __restrictAuthors(inputSoup, author_dict):
     location = 0
     title = str(inputSoup.find('h1'))
     byline = __getByline(inputSoup)
+    authorOccurrences = __searchAuthor(inputSoup)
     for author in author_dict:
         if(title.find(author) == -1):
             newAuthorList[author] = 30 - location - author_dict[author]
@@ -121,7 +120,7 @@ def __restrictAuthors(inputSoup, author_dict):
     print(newAuthorList)
     for element in newAuthorList:
         if (newAuthorList[element] > 20):
-            if(__findAuthor(inputSoup, element, byline)):
+            if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
                 newAuthorList[element] += 30
                 break
     return newAuthorList
@@ -129,5 +128,3 @@ def __restrictAuthors(inputSoup, author_dict):
 def storyList(author):
     result = getStories.getStories(author)
     return result
-
-print(compileAuthors(url))
