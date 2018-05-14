@@ -19,6 +19,6 @@ PipeFile.append("<h1 class='margin10'>Here's What We Found:</h1>")
 PipeFile.append(CardBuilder.buildCard('Article URL', url))
 PipeFile.append(CardBuilder.buildCard('Author', authorName))
 # Make card for wikipedia
-# PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
+PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
 # Make cards for articles
 PipeFile.append(CardBuilder.buildArticleCards(test.storyList(authorName)))

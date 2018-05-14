@@ -122,4 +122,5 @@ def __restrictAuthors(inputSoup, author_dict):
 
 def storyList(author):
     result = getStories.getStories(author)
+    PipeFile2.write(str(result))
     return result
