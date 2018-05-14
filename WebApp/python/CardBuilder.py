@@ -98,8 +98,11 @@ def buildWikipediaCard(authorName):
     return html
 
 def buildArticleCards(resp):
-    if(len(resp.stories) == 0):
-        print("No articles found")
+    PipeFile2.write("Hisss")
+    PipeFile2.append(len(str(resp)))
+    PipeFile2.append(str(len("AGFSADA")))
+    if(len(str(resp)) == 0 or len(resp.stories) == 0):
+        PipeFile2.append("Meme")
         return buildCard(
             title=":(",
             text="Sorry, we couldn't find any articles by this author"

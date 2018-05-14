@@ -25,9 +25,9 @@ os.environ['JAVAHOME'] = java_path
 default_count = 10
 
 # Configure API key authorization: app_id
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '59793aeb'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'f780bd2f'
 # Configure API key authorization: app_key
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '6557890cdc6ffabe3203700616bcb1fb'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '43157cd86a0c9ef77da72df2450d5da0'
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
@@ -122,5 +122,4 @@ def __restrictAuthors(inputSoup, author_dict):
 
 def storyList(author):
     result = getStories.getStories(author)
-    PipeFile2.write(str(result))
     return result
