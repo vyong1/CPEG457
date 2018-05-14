@@ -38,6 +38,7 @@ class WikipediaAPI:
         return "http://en.wikipedia.org/?curid=" + pageID
 
     def pageExists(pageId):
-        if(pageId == -1):
+        if(pageId == '-1'):
             return False
-        return True
+        else:
+            return True

@@ -6,8 +6,8 @@ class NewsAPI:
     def __init__(self):
         self.aylien_news_api = aylien_news_api
         self.ApiException = ApiException
-        self.aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '6557890cdc6ffabe3203700616bcb1fb'
-        self.aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '59793aeb'
+        self.aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '43157cd86a0c9ef77da72df2450d5da0'
+        self.aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'f780bd2f'
         self.api_instance = aylien_news_api.DefaultApi()
 
     def getStories(self, author_name):

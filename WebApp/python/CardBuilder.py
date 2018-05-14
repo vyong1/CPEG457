@@ -5,7 +5,7 @@ import json
 # local imports
 from HtmlElement import HtmlElement
 from Wikipedia_api.WikipediaAPI import *
-from PipeFile import PipeFile
+from PipeFile import *
 import CardBuilder
 # aylien news api imports
 import aylien_news_api
@@ -77,25 +77,24 @@ def buildCard(title, text):
 def buildWikipediaCard(authorName):
     request = WikipediaAPI.queryLatest(authorName)
     pageID = WikipediaAPI.getPageID(request)
-    
+
     if (not WikipediaAPI.pageExists(pageID)):
-        return '' # Page doesn't exist
+        html = '' # Page doesn't exist
+    else:
+        hasPulitz = "Yes"
+        if(WikipediaAPI.hasPulitzer(str(request.json())) is False):
+            hasPulitz = "No"
 
-    
-    hasPulitz = "Yes"
-    if(WikipediaAPI.hasPulitzer(str(request.json())) is False):
-        hasPulitz = "No"
-
-    pageURL = WikipediaAPI.getURLFromPageID(pageID)
-    wikiArticleHtml = urllib.request.urlopen(pageURL)
-    articleSoup = BeautifulSoup(wikiArticleHtml, 'html.parser')
-    introParagraph = str(
-        HtmlElement(
-        tag='p',
-        content= 'Fetched from Wikipedia.org',
-    )) + str(articleSoup.find('p'))
-    html = buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
-    html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz)
+        pageURL = WikipediaAPI.getURLFromPageID(pageID)
+        wikiArticleHtml = urllib.request.urlopen(pageURL)
+        articleSoup = BeautifulSoup(wikiArticleHtml, 'html.parser')
+        introParagraph = str(
+            HtmlElement(
+            tag='p',
+            content= 'Fetched from Wikipedia.org',
+        )) + str(articleSoup.find('p'))
+        html = buildCardWithLink(authorName, introParagraph, pageURL, "Link to Wikipedia Article")
+        html += CardBuilder.buildCard('Pulitzer Prize?', hasPulitz)
     return html
 
 def buildArticleCards(resp):
@@ -108,10 +107,29 @@ def buildArticleCards(resp):
     else:
         html = ""
         for story in resp.stories:
+            body = str(story.body)
+            if len(body) < 500:
+                body = body[0:len(body)]
+            else:
+                body = body[0:500]
+            body += "..."
+            # Replace non-html characters
+            body = body.replace("'", "&#39;")
+            body = body.replace("’", "&#39;")
+            body = body.replace("—", "-")
+
+            # Add the domain's logo
+            # <img src="url">
+            logoURL = str(story.source.logo_url)
+            if not (logoURL == "None"):
+                imgTag = '<div><img src="' + logoURL + '"></div>'
+                body = imgTag + body
+
             html += buildCardWithLink(
                 title=str(story.title),
-                text=str(story.body),
+                text=body,
                 link_url=str(story.links.permalink),
                 link_text="Read More"
             )
+            
         return html

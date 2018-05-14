@@ -5,6 +5,7 @@ import os
 import HtmlElement
 import getStories
 import NameStats
+from PipeFile import *  
 # aylien news api imports
 import aylien_news_api
 from aylien_news_api.rest import ApiException
@@ -24,21 +25,22 @@ os.environ['JAVAHOME'] = java_path
 default_count = 10
 
 # Configure API key authorization: app_id
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '59793aeb'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'f780bd2f'
 # Configure API key authorization: app_key
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '6557890cdc6ffabe3203700616bcb1fb'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '43157cd86a0c9ef77da72df2450d5da0'
 
 # create an instance of the API class
 api_instance = aylien_news_api.DefaultApi()
 
 
-def checkLine(line, author):
+
+def __checkLine(line, author):
     if(line.find(author) == -1):
         return False
     else:
         return True
 
-def find_all(a_str, sub):
+def __findAll(a_str, sub):
     start = 0
     while True:
         start = a_str.find(sub, start)
@@ -46,51 +48,46 @@ def find_all(a_str, sub):
         yield start
         start += len(sub) # use start += 1 to find overlapping matches
 
-def getByline(inputSoup):
+def __getByline(inputSoup):
     # Finds the first use of by in the html. Results are inconsistent
     byline_index = str(inputSoup).find('byline')
-    htmlLine = ''
-    if (byline_index < 0):
+    if (byline_index < 0): # byline not found
         byline_index = str(inputSoup).find('by')
-        for i in range(-40, 40):
-            htmlLine += str(inputSoup)[byline_index + i]
-    else:
-        for i in range(-100, 100):
-            htmlLine += str(inputSoup)[byline_index + i]
-    return htmlLine
+    # Extract text after 'byline' or 'by'
+    byline = str(inputSoup)[byline_index: byline_index + 200]
+    return byline
 
-def searchAuthor(inputSoup, possibleAuthor):
-    authorIndexes = find_all(str(inputSoup), possibleAuthor)
+def __searchAuthor(inputSoup):
+    authorIndexes = __findAll(str(inputSoup), 'author')
     allLines = []
-    currentLine = '' 
     for element in authorIndexes:
-        for i in range(-100, 30):
+        currentLine = '' 
+        for i in range(-60, 60):
             currentLine += str(inputSoup)[element + i]
         allLines.append(currentLine)
         currentLine = ''
     return allLines
 
-def findAuthor(inputSoup, author):
+def __findAuthor(inputSoup, author, byline, authorOccurrences):
     # Simple way to look for author. Needs fine tuning
-    byline = getByline(inputSoup)
-    if(checkLine(byline, author)):
+    if(__checkLine(byline, author)):
         return True
     else:
-        authorOccurrences = searchAuthor(inputSoup, author)
         for line in authorOccurrences:
-            if(checkLine(line, 'author') or checkLine(line, 'byline')):
+            if(__checkLine(line, author)):
                 return True
     return False
 
 
-def createAuthorDict(authorList):
+def __createAuthorDict(authorList):
     # Creates a dictionary for the possible authors in the article. 
     author_dict = {}
     for author in authorList:
-        if author in author_dict.keys():
-            author_dict[author] += 1
-        else:
-            author_dict[author] = 1
+        if(author.find(' ') > 0):
+            if author in author_dict.keys():
+                author_dict[author] += 1
+            else:
+                author_dict[author] = 1
     return author_dict
 
 
@@ -99,30 +96,31 @@ def compileAuthors(url):
     rawText = getStories.createRawText(url)
     tags = getStories.createTags(rawText)
     authorList = getStories.createPossibleAuthor(tags)
-    authorDict = createAuthorDict(authorList)
+    authorDict = __createAuthorDict(authorList)
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, 'html.parser')
-    refinedList = restrictAuthors(soup, authorDict)
+    refinedList = __restrictAuthors(soup, authorDict)
     return max(refinedList, key=refinedList.get)
 
-def restrictAuthors(inputSoup, author_dict):
+def __restrictAuthors(inputSoup, author_dict):
     # Restricts the author list based on different criteria. Currently just by count
     newAuthorList = {}
     location = 0
     title = str(inputSoup.find('h1'))
+    byline = __getByline(inputSoup)
+    authorOccurrences = __searchAuthor(inputSoup)
     for author in author_dict:
         if(title.find(author) == -1):
-            if(author_dict[author] < 5 and author.find(' ') > 0):
-                newAuthorList[author] = 30 - location
-            elif(author_dict[author] < 7 and author.find(' ') > 0):
-                newAuthorList[author] = 25 - location
+            newAuthorList[author] = 30 - location - 2 * author_dict[author]
         location += 1
     for element in newAuthorList:
-        if (newAuthorList[element] > 20):
-            if(findAuthor(inputSoup, element)):
+        if (newAuthorList[element] > 15):
+            if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
                 newAuthorList[element] += 30
+                break
     return newAuthorList
 
 def storyList(author):
     result = getStories.getStories(author)
+    PipeFile2.write(str(result))
     return result
