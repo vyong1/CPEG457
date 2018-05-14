@@ -1981,23 +1981,23 @@ Dense Fog Advisory issued May 12 at 8:08PM MDT until May 13 at 9:00AM MDT by NWS
 Widespread Very Dense Fog Over Portions Southeast Wyoming Tonight...... DENSE FOG ADVISORY IN EFFECT UNTIL 9 AM MDT SUNDAY... The National Weather Service in Cheyenne has issued a Dense Fog Advisory, which is in effect until 9 AM MDT Sunday.
 Warm, Comfortable Weather for Mother's Day
 Sunday is Mother's Day, and according to KSTP Meteorologist Sam Ryan, many moms should be content with the beautiful weather ahead.
-
-
+
+
 Decreasing clouds are expected overnight, with lows in the mid-40s.
-
-
+
+
 Highs on Sunday will warm up to reach the mid-70s by late afternoon.
-
-
+
+
 Ryan says the winds will be calm throughout the day, with the sun shining through some clouds. 
-
-
+
+
 Monday will continue with a warmup to 80 degrees.
-
-
+
+
 In fact, the rest of the week is expected to hover around 80 degrees each day, according to Ryan. For the most part, it will remain dry, but the warmer temperatures could result in some isolated thunderstorms in some areas. 
-
-
+
+
 {RELATEDSTORIES}
 Flash flooding possible overnight in Chicago area
 CHICAGO (Sun-Times Media Wire) - Low clouds moved in on Chicago Saturday afternoon covering much of the city’s skyline, while incoming storms were expected to bring heavy downpours and flash flooding across the city after dark, according to the National Weather Service Chicago.
@@ -2170,21 +2170,21 @@ Yes, NASA Is Actually Sending a Helicopter to Mars: Here's What It Will Do
  
 
 
-NASA will include a small, autonomous helicopter in the agency's upcoming Mars 2020 rover mission, officials announced today (May 11). 
-	The craft will undergo a 30-day test campaign once it reaches the Red Planet to demonstrate the viability of travel above the Martian surface with a heavier-than-air craft. 
-	"NASA has a proud history of firsts," NASA's administrator, Jim Bridenstine, said in a statement. "The idea of a helicopter flying the skies of another planet is thrilling. The Mars Helicopter holds much promise for our future science, discovery and exploration missions to Mars." [Red Planet Express: 10 Ways Robots Move on Mars] 
-	The Mars Helicopter's development began in 2013 at NASA's Jet Propulsion Laboratory (JPL) in California. It's just under 4 lbs. (1.8 kilograms), and its body is about the size of a softball, NASA officials said in the statement. It will carry solar cells to charge up in the light of the sun and a heating mechanism to endure cold nights on the Red Planet. 
-	The helicopter's twin blades will whirl at about 10 times the rate of a helicopter's blades on Earth — at 3,000 rpm — to stay aloft in Mars' thin atmosphere. 
-	"The altitude record for a helicopter flying here on Earth is about 40,000 feet [12,000 meters]," MiMi Aung, Mars Helicopter project manager at JPL, said in the statement. "The atmosphere of Mars is only one percent that of Earth, so when our helicopter is on the Martian surface, it's already at the Earth equivalent of 100,000 feet [30,000 m] up. 
-	"To make it fly at that low atmospheric density, we had to scrutinize everything, make it as light as possible while being as strong and as powerful as it can possibly be," she added. 
-	Mars 2020 is slated to launch in July of that year on United Launch Alliance's Atlas V rocket from Cape Canaveral Air Force Station in Florida, and the mission should arrive at Mars in February 2021. The six-wheeled rover will hunt for signs of habitable environments as well as sites that may have once hosted microbial life, examining the Red Planet with 23 cameras, a microphone and a drill to collect samples. 
-	The helicopter will ride to Mars attached to the rover's belly pan, officials said. Once the rover reaches the planet's surface, it will place the helicopter on the ground and move to a safe distance to relay commands; controllers on Earth will direct it to take its first autonomous flight. 
-	"We don't have a pilot, and Earth will be several light-minutes away, so there is no way to joystick this mission in real time," Aung said. "Instead, we have an autonomous capability that will be able to receive and interpret commands from the ground, and then fly the mission on its own." 
-	The helicopter will attempt up to five flights, going farther and operating for longer each time — up to a few hundred meters and 90 seconds, officials said. It will also climb to 10 feet (3 m) and hover for about 30 seconds. 
-	The Mars Helicopter is considered a high-risk, high-reward project, according to NASA: If the helicopter fails, it won't affect the rest of the Mars 2020 rover's mission, but if it succeeds, the agency will have a powerful new tool to survey the planet and access currently unreachable locations. 
-	"Exploring the Red Planet with NASA's Mars Helicopter exemplifies a successful marriage of science and technology innovation and is a unique opportunity to advance Mars exploration for the future," Thomas Zurbuchen, the associate administrator for NASA's Science Mission Directorate at the agency's headquarters in Washington, D.C., said in the statement. "After the Wright Brothers proved 117 years ago that powered, sustained, and controlled flight was possible here on Earth, another group of American pioneers may prove the same can be done on another world. 
+NASA will include a small, autonomous helicopter in the agency's upcoming Mars 2020 rover mission, officials announced today (May 11). 
+	The craft will undergo a 30-day test campaign once it reaches the Red Planet to demonstrate the viability of travel above the Martian surface with a heavier-than-air craft. 
+	"NASA has a proud history of firsts," NASA's administrator, Jim Bridenstine, said in a statement. "The idea of a helicopter flying the skies of another planet is thrilling. The Mars Helicopter holds much promise for our future science, discovery and exploration missions to Mars." [Red Planet Express: 10 Ways Robots Move on Mars] 
+	The Mars Helicopter's development began in 2013 at NASA's Jet Propulsion Laboratory (JPL) in California. It's just under 4 lbs. (1.8 kilograms), and its body is about the size of a softball, NASA officials said in the statement. It will carry solar cells to charge up in the light of the sun and a heating mechanism to endure cold nights on the Red Planet. 
+	The helicopter's twin blades will whirl at about 10 times the rate of a helicopter's blades on Earth — at 3,000 rpm — to stay aloft in Mars' thin atmosphere. 
+	"The altitude record for a helicopter flying here on Earth is about 40,000 feet [12,000 meters]," MiMi Aung, Mars Helicopter project manager at JPL, said in the statement. "The atmosphere of Mars is only one percent that of Earth, so when our helicopter is on the Martian surface, it's already at the Earth equivalent of 100,000 feet [30,000 m] up. 
+	"To make it fly at that low atmospheric density, we had to scrutinize everything, make it as light as possible while being as strong and as powerful as it can possibly be," she added. 
+	Mars 2020 is slated to launch in July of that year on United Launch Alliance's Atlas V rocket from Cape Canaveral Air Force Station in Florida, and the mission should arrive at Mars in February 2021. The six-wheeled rover will hunt for signs of habitable environments as well as sites that may have once hosted microbial life, examining the Red Planet with 23 cameras, a microphone and a drill to collect samples. 
+	The helicopter will ride to Mars attached to the rover's belly pan, officials said. Once the rover reaches the planet's surface, it will place the helicopter on the ground and move to a safe distance to relay commands; controllers on Earth will direct it to take its first autonomous flight. 
+	"We don't have a pilot, and Earth will be several light-minutes away, so there is no way to joystick this mission in real time," Aung said. "Instead, we have an autonomous capability that will be able to receive and interpret commands from the ground, and then fly the mission on its own." 
+	The helicopter will attempt up to five flights, going farther and operating for longer each time — up to a few hundred meters and 90 seconds, officials said. It will also climb to 10 feet (3 m) and hover for about 30 seconds. 
+	The Mars Helicopter is considered a high-risk, high-reward project, according to NASA: If the helicopter fails, it won't affect the rest of the Mars 2020 rover's mission, but if it succeeds, the agency will have a powerful new tool to survey the planet and access currently unreachable locations. 
+	"Exploring the Red Planet with NASA's Mars Helicopter exemplifies a successful marriage of science and technology innovation and is a unique opportunity to advance Mars exploration for the future," Thomas Zurbuchen, the associate administrator for NASA's Science Mission Directorate at the agency's headquarters in Washington, D.C., said in the statement. "After the Wright Brothers proved 117 years ago that powered, sustained, and controlled flight was possible here on Earth, another group of American pioneers may prove the same can be done on another world. 
 	"The ability to see clearly what lies beyond the next hill is crucial for future explorers," he added. "We already have great views of Mars from the surface as well as from orbit. With the added dimension of a bird's-eye view from a 'marscopter,' we can only imagine what future missions will achieve." 
-Email Sarah Lewin at slewin@space.com or follow her @SarahExplains. Follow us @Spacedotcom, Facebook and Google+. Original article on Space.com. 
+Email Sarah Lewin at slewin@space.com or follow her @SarahExplains. Follow us @Spacedotcom, Facebook and Google+. Original article on Space.com. 
 	Sarah started writing for Space.com in June of 2015. Her work has been featured by Scientific American, IEEE Spectrum, Quanta Magazine, Wired, The Scientist, Science Friday and WGBH's Inside NOVA. Sarah has an MA from NYU's Science, Health and Environmental Reporting Program and an AB in mathematics from Brown University. When not writing, reading or thinking about space, Sarah enjoys musical theatre and mathematical papercraft. You can follow her on Twitter @SarahExplains. Astronauts Talk Poets in Space and Mars Machinery with Future Engineers Seasonal Changes in Exoplanet's Atmosphere Could Signal Alien Life 'Starlight Tourism Destination' Earns World Travel Nomination How Bangladesh Became SpaceX's First Falcon 9 Block 5 Rocket Customer Soyuz Spacecraft That Flew First Dane, First Yearlong ISS Crew on Display in Denmark Copyright ©
 									document.write(new Date().getFullYear());
 									All Rights Reserved.

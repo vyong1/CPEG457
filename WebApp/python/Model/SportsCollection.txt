@@ -499,7 +499,7 @@ nfl.use("nfl-video", function (Y) {
         
       
       
-      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
+      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
 ,
       html5AdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp];ord=" + nfl.constants.AD_RANDOM + "?"
     },
@@ -574,7 +574,7 @@ nfl.use("nfl-video", function (Y) {
         
       
       
-      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
+      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
 ,
       html5AdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp];ord=" + nfl.constants.AD_RANDOM + "?"
     },
@@ -649,7 +649,7 @@ nfl.use("nfl-video", function (Y) {
         
       
       
-      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
+      flashAdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp]"
 ,
       html5AdTag: "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/4595/nfl.news/story&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=slot%3Dvideo%26url%3Dstory%26prtnr%3Daround-the-league%26team%3Dno%26conf%3Dnfc%26dvsn%3Dncs%26plyr%3Ddaniel_lasco%26plyr%3Djonathan_williams%26plyr%3Dferrell_edmunds%26s1%3Dstory&url=[referrer_url]&description_url=www.nfl.com&correlator=[timestamp];ord=" + nfl.constants.AD_RANDOM + "?"
     },

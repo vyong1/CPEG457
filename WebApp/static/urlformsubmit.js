@@ -6,6 +6,6 @@ function startupFunctions(){
 
 function fadeInCards(){
     $(".card").each(function(index, value){
-        $(value).fadeIn(index*400);
+        $(value).fadeIn(index*1000);
     });
 }
