@@ -5,7 +5,7 @@ class PoliticsModel:
     def __init__(self):
         self.name = "Politics"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r")
+        file = open( "python/Model/" + self.name+ "Model.txt","r")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
@@ -32,7 +32,7 @@ class BusinessModel:
     def __init__(self):
         self.name = "Business"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r", encoding = "ISO-8859-1")
+        file = open("python/Model/" + self.name+ "Model.txt","r", encoding = "ISO-8859-1")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
@@ -58,7 +58,7 @@ class EntertainmentModel:
     def __init__(self):
         self.name = "Entertainment"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r", encoding = "ISO-8859-1")
+        file = open("python/Model/" + self.name+ "Model.txt","r", encoding = "ISO-8859-1")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
@@ -85,7 +85,7 @@ class SportsModel:
     def __init__(self):
         self.name = "Sports"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r", encoding = "ISO-8859-1")
+        file = open("python/Model/" + self.name+ "Model.txt","r", encoding = "ISO-8859-1")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
@@ -112,7 +112,7 @@ class ScienceModel:
     def __init__(self):
         self.name = "Science"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r", encoding = "ISO-8859-1")
+        file = open("python/Model/" + self.name+ "Model.txt","r", encoding = "ISO-8859-1")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
@@ -139,7 +139,7 @@ class TechnologyModel:
     def __init__(self):
         self.name = "Technology"
         self.wordStats = {}
-        file = open(self.name+ "Model.txt","r", encoding = "ISO-8859-1")
+        file = open("python/Model/" + self.name+ "Model.txt","r", encoding = "ISO-8859-1")
         self.readFirstLine = False
         for line in file:
             if(not self.readFirstLine):
