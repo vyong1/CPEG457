@@ -116,13 +116,8 @@ def __restrictAuthors(inputSoup, author_dict):
         location += 1
     print(newAuthorList)
     for element in newAuthorList:
-<<<<<<< HEAD
         if (newAuthorList[element] > 15):
             if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
-=======
-        if (newAuthorList[element] > 20):
-            if(__findAuthor(inputSoup, element, byline)):
->>>>>>> 8dca380c47272afd9e6a6ba62ed4dc06e7643454
                 newAuthorList[element] += 30
                 break
     return newAuthorList
