@@ -26,7 +26,7 @@ class NameScorer:
     '''Scores names in an article'''
     def __init__(self, url: str):
         self.url = url
-        self.authorDict = {}
+        self.authors = AuthorDict()
 
     def requestArticle(self) -> BeautifulSoup:
         '''Requests the raw HTML from the url then converts
@@ -37,9 +37,11 @@ class NameScorer:
     def parseText(self, soup: BeautifulSoup) -> dict:
         '''Parses text for authors with the help
         of bs4 and Stanford NER'''
-        
         pass
-        
+    
+    def findBylineElement(self, soup):
+        return soup.find(BS4Helper.hasClassWithByline)
+
     def findAuthorOccurrences(self):
         '''Find occurrences of author text'''
         pass
@@ -55,7 +57,7 @@ class NameScorer:
         # Find occurrences of the author name, and the surrounding text
         # Parse surrounding text to score
         pass
-    
+
 class Occurrence:
     '''Indicates an occurrence of an author in text'''
     def __init__(index: int, surroundingText: str):
@@ -66,36 +68,70 @@ class Author:
     '''An author class with score and occurrences
     in the text'''
     def __init__(self, name: str):
-        self.name
+        self.name = name
         self.score = 0
         self.occurrences = []
     
-    def addOccurrence(self, occurrence) -> Author:
+    def addOccurrence(self, occurrence):
         self.occurrences.append(occurrence)
         return self
     
-    def setScore(self, score: int) -> Author:
+    def setScore(self, score: int):
         self.score = score
         return self
 
 class AuthorDict:
     '''A wrapper for a dictionary of authors (name : author)'''
     def __init__(self):
-        self._authors = {}
+        self.__dict__ = {}
 
     def __getitem__(self, authorName: str) -> Author:
         '''Indexer method'''
-        return self._authors[authorName]
+        return self.__dict__[authorName]
+
+    def __setitem__(self, authorName: str, author: Author):
+        '''Setter method'''
+        self.__dict__[authorName] = author
 
     def addAuthor(self, auth: Author):
         '''Adds an author (with no occurrences)'''
-        if auth.name in self._authors:
+        if auth.name in self.__dict__:
             return
         else:
-            self._authors[auth.name] = author
+            self.__dict__[auth.name] = author
+    
+    def authExists(self, auth: Author) -> bool:
+        '''Returns if an author exists'''
+        if auth.name in self.__dict__:
+            return True
+        else:
+            return False
+
+class BS4Helper:
+    def hasClassWithByline(tag):
+        '''Used by bs4 to find a tag with byline in the class'''
+        return tag.has_attr('class') and 'byline' in tag['class']
     
 
 
-# TEST CODE STARTS HERE
-scorer = NameScorer("http://www.foxnews.com/world/2018/05/15/gave-us-trucks-and-ammunition-to-al-qaeda-chaotic-us-effort-to-arm-syrian-rebels.html")
-print(scorer.requestArticle())
+
+
+##
+# Test Code here
+#
+
+def authorDictTest():
+    authors = AuthorDict()
+    authors['Donald Trump'] = Author('Donald Trump')
+    print(authors['Donald Trump'].score)
+
+
+def scorerTest():
+    url = "http://www.foxnews.com/world/2018/05/15/gave-us-trucks-and-ammunition-to-al-qaeda-chaotic-us-effort-to-arm-syrian-rebels.html"
+    scorer = NameScorer(url)
+    # print(str(scorer.requestArticle())
+    html = urllib.request.urlopen(url)
+    soup = BeautifulSoup(html, 'html.parser')
+    print(str(scorer.findBylineElement(soup)))
+
+scorerTest()
