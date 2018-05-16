@@ -34,9 +34,10 @@ class NameScorer:
         html = urllib.request.urlopen(self.url)
         return BeautifulSoup(html, 'html.parser').prettify(formatter="html")
     
-    def parseText(self, soup: BeautifulSoup):
+    def parseText(self, soup: BeautifulSoup) -> dict:
         '''Parses text for authors with the help
         of bs4 and Stanford NER'''
+        
         pass
         
     def findAuthorOccurrences(self):
@@ -61,24 +62,38 @@ class Occurrence:
         self.index = index
         self.surroundingText = surroundingText
 
-class AuthorOccurrenceDict:
-    '''Links an author with a list of their occurrences'''
-    def __init__(self):
-        self.authors = {}
+class Author:
+    '''An author class with score and occurrences
+    in the text'''
+    def __init__(self, name: str):
+        self.name
+        self.score = 0
+        self.occurrences = []
+    
+    def addOccurrence(self, occurrence) -> Author:
+        self.occurrences.append(occurrence)
+        return self
+    
+    def setScore(self, score: int) -> Author:
+        self.score = score
+        return self
 
-    def addAuthor(self, author: str):
+class AuthorDict:
+    '''A wrapper for a dictionary of authors (name : author)'''
+    def __init__(self):
+        self._authors = {}
+
+    def __getitem__(self, authorName: str) -> Author:
+        '''Indexer method'''
+        return self._authors[authorName]
+
+    def addAuthor(self, auth: Author):
         '''Adds an author (with no occurrences)'''
-        if author in self.dict:
+        if auth.name in self._authors:
             return
         else:
-            self.authors[author] = []
-
-    def addOccurrence(self, author: str, occurrence: Occurrence):
-        '''Adds an occurrence'''
-        if author in self.dict:
-            self.authors[author].append(occurrence)
-        else:
-            self.authors[author] = [occurrence]
+            self._authors[auth.name] = author
+    
 
 
 # TEST CODE STARTS HERE
