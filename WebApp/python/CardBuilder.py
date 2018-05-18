@@ -116,6 +116,7 @@ def buildArticleCards(resp):
             # Replace non-html characters
             body = body.replace("'", "&#39;")
             body = body.replace("’", "&#39;")
+            body = body.replace("'", "&#39;")
             body = body.replace("—", "-")
 
             # Add the domain's logo
