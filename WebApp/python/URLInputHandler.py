@@ -1,6 +1,6 @@
 from PipeFile import PipeFile
 import POSTParser
-from Wikipedia_api.WikipediaAPI import *
+from WikipediaAPI import *
 import CardBuilder
 import sys
 import AuthorID

@@ -4,7 +4,7 @@ import os
 import json
 # local imports
 from HtmlElement import HtmlElement
-from Wikipedia_api.WikipediaAPI import *
+from WikipediaAPI import *
 from PipeFile import *
 import CardBuilder
 # aylien news api imports
