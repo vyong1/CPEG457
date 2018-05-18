@@ -35,12 +35,14 @@ api_instance = aylien_news_api.DefaultApi()
 
 
 def __checkLine(line, author):
+    # Checks if the author's name is in the current line of text
     if(line.find(author) == -1):
         return False
     else:
         return True
 
 def __findAll(a_str, sub):
+    # Finds all instances of author in the text
     start = 0
     while True:
         start = a_str.find(sub, start)
@@ -58,6 +60,7 @@ def __getByline(inputSoup):
     return byline
 
 def __searchAuthor(inputSoup):
+    # Returns the lines of text that contain 'author'
     authorIndexes = __findAll(str(inputSoup), 'author')
     allLines = []
     for element in authorIndexes:
@@ -69,7 +72,7 @@ def __searchAuthor(inputSoup):
     return allLines
 
 def __findAuthor(inputSoup, author, byline, authorOccurrences):
-    # Simple way to look for author. Needs fine tuning
+    # Looks for the author in the lines of text that contain 'author'
     if(__checkLine(byline, author)):
         return True
     else:
@@ -93,26 +96,36 @@ def __createAuthorDict(authorList):
 
 def compileAuthors(url):
     # Gathers and Refines the author search
+    # Get the raw html of the url
     rawText = getStories.createRawText(url)
+    # Create the NER tagged list of potential author names
     tags = getStories.createTags(rawText)
+    # Refine the tagged list to get full names
     authorList = getStories.createPossibleAuthor(tags)
+    # Create a dictionary of those author names
     authorDict = __createAuthorDict(authorList)
+    # Open the url with Beautiful Soup
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, 'html.parser')
+    # Restrict and score the author list
     refinedList = __restrictAuthors(soup, authorDict)
+    # Return the author name with the max score
     return max(refinedList, key=refinedList.get)
 
 def __restrictAuthors(inputSoup, author_dict):
-    # Restricts the author list based on different criteria. Currently just by count
+    # Restricts the author list and score the remaining authors based on occurences, location, and the byline
     newAuthorList = {}
     location = 0
     title = str(inputSoup.find('h1'))
     byline = __getByline(inputSoup)
     authorOccurrences = __searchAuthor(inputSoup)
+    # Create a refined list of author names. Score based on location and occurences
     for author in author_dict:
+        # Ensure the author's name is not in the title
         if(title.find(author) == -1):
             newAuthorList[author] = 30 - location - 2 * author_dict[author]
         location += 1
+    # Loop through the refined list. Add a substantial score if the author's name is near 'author' or in a byline
     for element in newAuthorList:
         if (newAuthorList[element] > 15):
             if(__findAuthor(inputSoup, element, byline, authorOccurrences)):
@@ -121,5 +134,6 @@ def __restrictAuthors(inputSoup, author_dict):
     return newAuthorList
 
 def storyList(author):
+    # Calling the getStories to get the Aylien API Response
     result = getStories.getStories(author)
     return result

@@ -3,14 +3,14 @@ import POSTParser
 from Wikipedia_api.WikipediaAPI import *
 import CardBuilder
 import sys
-import test
+import AuthorID
 
 # Parse the POST and extract the URL
 POST = POSTParser.parse()
 url = POST['url_input']
 
 # Extract the name of the author
-authorName = test.compileAuthors(url)
+authorName = AuthorID.compileAuthors(url)
 print(authorName)
 
 # Output some helpful html
@@ -21,4 +21,4 @@ PipeFile.append(CardBuilder.buildCard('Author', authorName))
 # Make card for wikipedia
 PipeFile.append(CardBuilder.buildWikipediaCard(authorName))
 # Make cards for articles
-PipeFile.append(CardBuilder.buildArticleCards(test.storyList(authorName)))
+PipeFile.append(CardBuilder.buildArticleCards(AuthorID.storyList(authorName)))
