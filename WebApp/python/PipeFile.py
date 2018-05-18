@@ -47,9 +47,3 @@ class PipeFile2():
     def read():
         f = open(PipeFile2.Name, "r")
         return f.read()
-
-# Sample Usage:
-#
-# PipeFile.write("Dank\n")
-# PipeFile.append("Memes")
-#
